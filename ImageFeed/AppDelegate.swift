@@ -4,7 +4,6 @@
 //
 //  Created by Наринэ  Овсепян on 01.02.2026.
 //
-вносим изменения
 import UIKit
 
 @main
