@@ -63,6 +63,16 @@
 			path = ImagesList;
 			sourceTree = "<group>";
 		};
+		C0FCD3582F48C48400E1C9AC /* Profile */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C0FCD35C2F49F71F00E1C9AC /* SingleImage */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SingleImage;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +103,8 @@
 		C06D8F532F2F856D00C78F45 = {
 			isa = PBXGroup;
 			children = (
+				C0FCD35C2F49F71F00E1C9AC /* SingleImage */,
+				C0FCD3582F48C48400E1C9AC /* Profile */,
 				C06D8FF22F3B6DFD00C78F45 /* ImagesList */,
 				C06D8F5E2F2F856D00C78F45 /* ImageFeed */,
 				C06D8F752F2F856E00C78F45 /* ImageFeedTests */,
@@ -129,6 +141,8 @@
 			fileSystemSynchronizedGroups = (
 				C06D8F5E2F2F856D00C78F45 /* ImageFeed */,
 				C06D8FF22F3B6DFD00C78F45 /* ImagesList */,
+				C0FCD3582F48C48400E1C9AC /* Profile */,
+				C0FCD35C2F49F71F00E1C9AC /* SingleImage */,
 			);
 			name = ImageFeed;
 			packageProductDependencies = (
