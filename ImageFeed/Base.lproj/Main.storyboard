@@ -20,29 +20,13 @@
                         <color key="selectedImageTintColor" name="YP White"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Mai-NF-aQ0" kind="relationship" relationship="viewControllers" id="IYa-cK-dOw"/>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="SON-kF-pHS"/>
+                        <segue destination="Mai-NF-aQ0" kind="relationship" relationship="viewControllers" id="ieT-ST-tba"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEB-Ub-jnP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2044" y="4"/>
-        </scene>
-        <!--Profile View Controller-->
-        <scene sceneID="tQo-aQ-fR8">
-            <objects>
-                <viewController id="Mai-NF-aQ0" customClass="ProfileViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LMs-1b-jlN">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="vG9-7n-2Jh"/>
-                        <color key="backgroundColor" name="YP Black"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" image="tab_profile_active" id="Tqd-Bf-Nku"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dzQ-xe-pdz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-778" y="-345"/>
         </scene>
         <!--ImageList-->
         <scene sceneID="tne-QT-ifu">
@@ -125,7 +109,7 @@
                             <constraint firstItem="GYj-RI-Hkq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jrC-GW-cAX"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="tab_editorial_active" id="LPT-hG-n1t"/>
+                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="LPT-hG-n1t"/>
                     <navigationItem key="navigationItem" id="Wqa-7z-fPI"/>
                     <connections>
                         <outlet property="tableView" destination="GYj-RI-Hkq" id="th7-Sb-Jyb"/>
@@ -204,6 +188,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOR-gM-ytu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="46.564885496183201" y="355.63380281690144"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="tQo-aQ-fR8">
+            <objects>
+                <viewController id="Mai-NF-aQ0" customClass="ProfileViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LMs-1b-jlN">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="vG9-7n-2Jh"/>
+                        <color key="backgroundColor" name="YP Black"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="tab_profile_active" id="Tqd-Bf-Nku"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dzQ-xe-pdz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-778" y="-345"/>
         </scene>
     </scenes>
     <resources>
