@@ -21,17 +21,22 @@ final class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("🔐 AuthViewController загружен")
         configureBackButton()
     }
     
         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            print("🔍 prepare вызван, идентификатор: \(segue.identifier ?? "nil")")
             if segue.identifier == showWebViewSegueIdentifier {
+                print("🔍 Это наш ShowWebView segue")
                 guard
                     let webViewViewController = segue.destination as? WebViewViewController
                 else {
+                    print("❌ Не удалось привести destination к WebViewViewController")
                     assertionFailure("Failed to prepare for \(showWebViewSegueIdentifier)")
                     return
                 }
+                print("✅ WebViewViewController получен, устанавливаем delegate")
                 webViewViewController.delegate = self
             } else {
                 super.prepare(for: segue, sender: sender)

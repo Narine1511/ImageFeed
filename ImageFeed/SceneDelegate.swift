@@ -17,11 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 window = UIWindow(windowScene: windowScene)
                 
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let authVC = storyboard.instantiateViewController(withIdentifier: "AuthViewController") as! AuthViewController
-                authVC.delegate = self
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let splashVC = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
                 
-                window?.rootViewController = authVC
+                window?.rootViewController = splashVC
                 window?.makeKeyAndVisible()
             }
 
@@ -53,12 +52,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-}
-
-extension SceneDelegate: AuthViewControllerDelegate {
-    func didAuthenticate(_ vc: AuthViewController) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "TabBarViewController")
-        window?.rootViewController = mainVC
-    }
 }

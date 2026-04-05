@@ -26,6 +26,8 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("проверка")
+        view.backgroundColor = .red
         
         webView.navigationDelegate = self
         loadAuthView()
@@ -44,6 +46,7 @@ final class WebViewViewController: UIViewController {
         ]
         
         guard let url = urlComponents.url else {
+            print("❌ Ошибка: не удалось создать URL")
             return
         }
         let request = URLRequest(url: url)
@@ -53,9 +56,6 @@ final class WebViewViewController: UIViewController {
    
     
     @IBOutlet weak var didTapBackButton: UINavigationItem!
-    
-    
-    
     
  /*   @IBAction private func didTapBackButton(_ sender: Any?) {
         delegate?.webViewViewControllerDidCancel(self)

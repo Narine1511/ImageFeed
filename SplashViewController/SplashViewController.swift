@@ -5,13 +5,15 @@
 //  Created by Наринэ  Овсепян on 22.03.2026.
 //
 
-/*import UIKit
+import UIKit
 
 final class SplashViewController: UIViewController {
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
     private let storage = OAuth2TokenStorage.shared
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         if storage.token != nil {
             switchToMainScreen()
         } else {
@@ -19,7 +21,6 @@ final class SplashViewController: UIViewController {
         }
     }
     private func switchToMainScreen() {
-        
     }
     
     private func switchToAuthScreen() {
@@ -70,4 +71,3 @@ extension SplashViewController: AuthViewControllerDelegate {
         switchToTabBarController()
     }
 }
-*/
