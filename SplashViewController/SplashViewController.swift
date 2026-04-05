@@ -5,7 +5,7 @@
 //  Created by Наринэ  Овсепян on 22.03.2026.
 //
 
-import UIKit
+/*import UIKit
 
 final class SplashViewController: UIViewController {
     private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"
@@ -70,3 +70,4 @@ extension SplashViewController: AuthViewControllerDelegate {
         switchToTabBarController()
     }
 }
+*/

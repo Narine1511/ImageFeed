@@ -28,7 +28,7 @@
         <!--Auth View Controller-->
         <scene sceneID="wtD-tK-SQD">
             <objects>
-                <viewController id="b8J-Sx-Bx1" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AuthViewController" id="b8J-Sx-Bx1" customClass="AuthViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="av7-dd-w3u">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,7 +120,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="gQk-aP-wif">
             <objects>
-                <tabBarController id="Elh-E0-To9" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewControlle" id="Elh-E0-To9" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ih6-3J-c0B">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

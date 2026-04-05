@@ -12,7 +12,7 @@ enum WebViewConstants {
 }
 
 protocol WebViewViewControllerDelegate: AnyObject {
-    func webVviewViewController(_ vc: WebViewViewController, didAuthenticateWithCode
+    func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode
                                 code: String)
     func webViewViewControllerDidCancel(_ vc: WebViewViewController)
 }
@@ -94,7 +94,7 @@ extension WebViewViewController: WKNavigationDelegate {
         decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
     ) {
         if let code = code(from: navigationAction) {
-            delegate?.webVviewViewController(self, didAuthenticateWithCode: code)
+            delegate?.webViewViewController(self, didAuthenticateWithCode: code)
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)
