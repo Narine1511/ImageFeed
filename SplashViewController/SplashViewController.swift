@@ -13,17 +13,12 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+       /* OAuth2TokenStorage.shared.token = nil*/
         if storage.token != nil {
-            switchToMainScreen()
+            switchToTabBarController()
         } else {
             performSegue(withIdentifier: showAuthenticationScreenSegueIdentifier, sender: nil)
         }
-    }
-    private func switchToMainScreen() {
-    }
-    
-    private func switchToAuthScreen() {
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,13 +31,11 @@ final class SplashViewController: UIViewController {
     }
     
     private func switchToTabBarController() {
-        guard let window = UIApplication.shared.windows.first else {
+        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else {
             assertionFailure("Invalid window configuration")
             return
         }
-        let tabBarController = UIStoryboard(name: "Main", bundle: .main)
-            .instantiateViewController(withIdentifier: "TabBarViewController")
-        window.rootViewController = tabBarController
+        sceneDelegate.switchToTabBarController()
     }
 }
 
@@ -52,7 +45,7 @@ extension SplashViewController {
         if segue.identifier == showAuthenticationScreenSegueIdentifier {
             guard
                 let navigationController = segue.destination as? UINavigationController,
-                let viewController = navigationController.viewControllers.first as? AuthViewController
+                let viewController = navigationController.viewControllers[0] as? AuthViewController
             else {
                 assertionFailure("Failed to prepare for \(showAuthenticationScreenSegueIdentifier)")
                 return
@@ -70,4 +63,8 @@ extension SplashViewController: AuthViewControllerDelegate {
         
         switchToTabBarController()
     }
+}
+
+
+private func switchToAuthScreen() {
 }

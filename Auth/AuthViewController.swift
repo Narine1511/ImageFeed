@@ -66,13 +66,14 @@ final class AuthViewController: UIViewController {
                     }
                 case .failure(let error):
                     print("Ошибка получения токена: \(error)")
+                    vc.dismiss(animated: true)
                     break
                 }
             }
         }
         
         func webViewViewControllerDidCancel(_ vc: WebViewViewController) {
-            vc.dismiss(animated: true)
+            /*vc.dismiss(animated: true)*/
         }
     }
 

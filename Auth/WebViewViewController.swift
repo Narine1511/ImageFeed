@@ -26,12 +26,11 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("проверка")
-        view.backgroundColor = .red
         
         webView.navigationDelegate = self
         loadAuthView()
         updateProgress()
+
     }
     
     private func loadAuthView() {
@@ -101,7 +100,14 @@ extension WebViewViewController: WKNavigationDelegate {
         }
     }
     
-    private func code(from navigationAction: WKNavigationAction) -> String? {
+    private func code(from navigationAction: WKNavigationAction) -> String?
+    {
+        guard let url = navigationAction.request.url else { return nil }
+        
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        return components?.queryItems?.first(where: { $0.name == "code" })?.value
+    }
+   /* {
         if
             let url = navigationAction.request.url,
             let urlComponents = URLComponents(string: url.absoluteString),
@@ -113,6 +119,6 @@ extension WebViewViewController: WKNavigationDelegate {
         } else {
             return nil
         }
-    }
+    }*/
 }
 
