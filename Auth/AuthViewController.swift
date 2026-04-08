@@ -25,38 +25,34 @@ final class AuthViewController: UIViewController {
         configureBackButton()
     }
     
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            print("🔍 prepare вызван, идентификатор: \(segue.identifier ?? "nil")")
-            if segue.identifier == showWebViewSegueIdentifier {
-                print("🔍 Это наш ShowWebView segue")
-                guard
-                    let webViewViewController = segue.destination as? WebViewViewController
-                else {
-                    print("❌ Не удалось привести destination к WebViewViewController")
-                    assertionFailure("Failed to prepare for \(showWebViewSegueIdentifier)")
-                    return
-                }
-                print("✅ WebViewViewController получен, устанавливаем delegate")
-                webViewViewController.delegate = self
-            } else {
-                super.prepare(for: segue, sender: sender)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == showWebViewSegueIdentifier {
+            guard
+                let webViewViewController = segue.destination as? WebViewViewController
+            else {
+                assertionFailure("Failed to prepare for \(showWebViewSegueIdentifier)")
+                return
             }
-        }
-        
-        private func configureBackButton() {
-            navigationController?.navigationBar.backIndicatorImage = UIImage(named: "nav_back_button")
-            navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "nav_back_button")
-            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style:  .plain, target: nil, action: nil)
-            navigationItem.backBarButtonItem?.tintColor = UIColor(named: "ypBlack")
+            webViewViewController.delegate = self
+        } else {
+            super.prepare(for: segue, sender: sender)
         }
     }
+    
+    private func configureBackButton() {
+        navigationController?.navigationBar.backIndicatorImage = UIImage(resource: .navBackButton)
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(resource: .navBackButton)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style:  .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem?.tintColor = UIColor(named: "ypBlack")
+    }
+}
     
 // MARK: - AuthViewController + WebViewViewControllerDelegate
     extension AuthViewController: WebViewViewControllerDelegate {
         func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
             /*vc.dismiss(animated: true)*/
             OAuth2Service.shared.fetchOAuthToken(code: code) { [weak self] result in
-                guard let self = self else {return}
+                guard let self else {return}
                 
                 switch result{
                 case .success(let token):
@@ -79,17 +75,16 @@ final class AuthViewController: UIViewController {
 
 // MARK: - OAuth2TokenStorage
     
-
-    final class OAuth2TokenStorage {
-        static let shared = OAuth2TokenStorage()
-        private init() {}
-        
-        private let tokenKey = "authToken"
-        var token: String? {
-            get { UserDefaults.standard.string(forKey: tokenKey)}
-            set { UserDefaults.standard.set(newValue, forKey: tokenKey)}
-        }
+final class OAuth2TokenStorage {
+    static let shared = OAuth2TokenStorage()
+    private init() {}
+    
+    private let tokenKey = "authToken"
+    var token: String? {
+        get { UserDefaults.standard.string(forKey: tokenKey)}
+        set { UserDefaults.standard.set(newValue, forKey: tokenKey)}
     }
+}
     
 // MARK: - OAuth2Service
 final class OAuth2Service {
@@ -147,11 +142,3 @@ final class OAuth2Service {
             task.resume()
         }
     }
-
-/* extension AuthViewController {
-    private func fetchOAuthToken(_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
-        oauth2Service.fetchOAuthToken(code) { result in
-            completion(result)
-        }
-    }
-}*/

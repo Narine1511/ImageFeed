@@ -63,8 +63,9 @@ final class ProfileViewController: UIViewController {
         descriptionLabel.leadingAnchor.constraint(equalTo: loginNameLabel.leadingAnchor).isActive = true
         descriptionLabel.topAnchor.constraint(equalTo: loginNameLabel.bottomAnchor, constant: 8).isActive = true
         
-        
-        let button = UIButton.systemButton(with: UIImage(named: "Exit")!,
+        let exitImage = UIImage(resource: .exit) as UIImage?
+        guard let exitImage else {return}
+        let button = UIButton.systemButton(with: exitImage,
                                            target: self,
                                            action: #selector(self.didTapButton)
         )
