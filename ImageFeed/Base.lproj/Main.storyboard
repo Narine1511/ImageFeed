@@ -126,7 +126,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="C21-AE-ha0"/>
                     <connections>
-                        <outlet property="didTapBackButton" destination="C21-AE-ha0" id="UTz-pT-N9Q"/>
+                        <outlet property="didTapBackButton" destination="C21-AE-ha0" id="MKI-Pb-w7y"/>
                         <outlet property="progressView" destination="C9t-tT-Xlr" id="G8f-z2-WeN"/>
                         <outlet property="webView" destination="zWj-RI-TYr" id="0Zs-my-v4w"/>
                     </connections>

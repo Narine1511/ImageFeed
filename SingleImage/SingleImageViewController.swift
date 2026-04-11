@@ -1,9 +1,4 @@
-//
-//  SingleImageViewController.swift
-//  ImageFeed
-//
-//  Created by Наринэ  Овсепян on 21.02.2026.
-//
+
 import UIKit
 
 final class SingleImageViewController: UIViewController {
@@ -33,7 +28,7 @@ final class SingleImageViewController: UIViewController {
     }
     
     @IBOutlet weak var scrollView: UIScrollView!
-
+    
     
     @IBAction func didTapShareButton(_ sender: UIButton) {
         guard let image else { return }
@@ -43,7 +38,7 @@ final class SingleImageViewController: UIViewController {
         )
         present(share, animated: true, completion: nil)
     }
-
+    
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
         view.layoutIfNeeded()
         

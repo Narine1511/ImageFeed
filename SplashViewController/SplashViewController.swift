@@ -1,9 +1,3 @@
-//
-//  SplashViewController.swift
-//  ImageFeed
-//
-//  Created by Наринэ  Овсепян on 22.03.2026.
-//
 
 import UIKit
 
@@ -13,7 +7,6 @@ final class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-       /* OAuth2TokenStorage.shared.token = nil*/
         if storage.token != nil {
             switchToTabBarController()
         } else {
@@ -60,7 +53,6 @@ extension SplashViewController {
 extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ vc: AuthViewController) {
         vc.dismiss(animated: true)
-        
         switchToTabBarController()
     }
 }

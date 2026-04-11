@@ -32,8 +32,8 @@ final class ImagesListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showSingleImageSegueIdentifier {
             guard
-            let viewController = segue.destination as? SingleImageViewController,
-            let indexPath = sender as? IndexPath
+                let viewController = segue.destination as? SingleImageViewController,
+                let indexPath = sender as? IndexPath
             else {
                 assertionFailure("Invalid segue destination")
                 return
@@ -56,7 +56,7 @@ extension ImagesListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
         guard let imageListCell = cell as? ImagesListCell else {
-        return UITableViewCell()
+            return UITableViewCell()
         }
         
         configCell(for: imageListCell, with: indexPath)

@@ -68,6 +68,11 @@
 			path = ImagesList;
 			sourceTree = "<group>";
 		};
+		C0E125D32F880213006DF49A /* ServiceAccessLayer */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ServiceAccessLayer;
+			sourceTree = "<group>";
+		};
 		C0FCD3582F48C48400E1C9AC /* Profile */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Profile;
@@ -119,6 +124,7 @@
 		C06D8F532F2F856D00C78F45 = {
 			isa = PBXGroup;
 			children = (
+				C0E125D32F880213006DF49A /* ServiceAccessLayer */,
 				C0FCD3942F703DA200E1C9AC /* SplashViewController */,
 				C0FCD3832F5C208C00E1C9AC /* Auth */,
 				C0FCD35C2F49F71F00E1C9AC /* SingleImage */,
@@ -168,6 +174,7 @@
 			fileSystemSynchronizedGroups = (
 				C06D8F5E2F2F856D00C78F45 /* ImageFeed */,
 				C06D8FF22F3B6DFD00C78F45 /* ImagesList */,
+				C0E125D32F880213006DF49A /* ServiceAccessLayer */,
 				C0FCD3582F48C48400E1C9AC /* Profile */,
 				C0FCD35C2F49F71F00E1C9AC /* SingleImage */,
 				C0FCD3832F5C208C00E1C9AC /* Auth */,

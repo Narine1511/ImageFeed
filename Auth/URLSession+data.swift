@@ -1,11 +1,5 @@
-//
-//  URLSession+data.swift
-//  ImageFeed
-//
-//  Created by Наринэ  Овсепян on 21.03.2026.
-//
-import Foundation
 
+import Foundation
 
 enum NetworkError: Error {
     case httpStatusCode(Int)
