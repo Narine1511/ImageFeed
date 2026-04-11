@@ -3,7 +3,7 @@ import UIKit
 import WebKit
 
 enum WebViewConstants {
-    static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize"
+    static let unsplashAuthorizeURLString = "https://unsplash.com/oauth/authorize" //https://ya.ru
 }
 
 protocol WebViewViewControllerDelegate: AnyObject {
