@@ -11,5 +11,5 @@ enum Constants {
     static let secretKey = "3MzwOrCoqP-zZLE460kGLm7TeQ164leU9X0Ig5fLLEk"
     static let redirectURI = "urn:ietf:wg:oauth:2.0:oob"
     static let accessScope = "public+read_user+write_likes"
-    static let defaultBaseURLString = URL(string: "https://api.unsplash.com")!// "https://api.unsplash.com"
+    static let defaultBaseURLString: URL? = URL(string: "https://api.unsplash.com") // fource
 }

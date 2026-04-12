@@ -70,17 +70,17 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="auth_screen_logo" translatesAutoresizingMaskIntoConstraints="NO" id="uXv-DH-82h">
-                                <rect key="frame" x="166.66666666666666" y="430.66666666666669" width="60" height="60"/>
+                                <rect key="frame" x="166.66666666666666" y="396" width="60" height="60"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iix-qI-8mp"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="QaX-3O-3Wb" secondAttribute="bottom" constant="90" id="F8H-Kx-US3"/>
-                            <constraint firstItem="uXv-DH-82h" firstAttribute="centerY" secondItem="iix-qI-8mp" secondAttribute="centerY" id="Ptn-Fm-jNr"/>
+                            <constraint firstItem="uXv-DH-82h" firstAttribute="centerY" secondItem="av7-dd-w3u" secondAttribute="centerY" id="Ptn-Fm-jNr"/>
                             <constraint firstItem="QaX-3O-3Wb" firstAttribute="leading" secondItem="iix-qI-8mp" secondAttribute="leading" constant="16" id="e1j-31-jgF"/>
                             <constraint firstItem="iix-qI-8mp" firstAttribute="trailing" secondItem="QaX-3O-3Wb" secondAttribute="trailing" constant="16" id="lfL-r0-yz6"/>
-                            <constraint firstItem="uXv-DH-82h" firstAttribute="centerX" secondItem="iix-qI-8mp" secondAttribute="centerX" id="nQf-Yi-06D"/>
+                            <constraint firstItem="uXv-DH-82h" firstAttribute="centerX" secondItem="av7-dd-w3u" secondAttribute="centerX" id="nQf-Yi-06D"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fq3-r0-3A8"/>

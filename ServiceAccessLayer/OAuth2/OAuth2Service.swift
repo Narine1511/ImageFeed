@@ -20,6 +20,7 @@ final class OAuth2Service {
         ]
         
         guard let authTokenUrl = urlComponents.url else {
+            print("Не удалось создать URL для токена")
             return nil
         }
         var request = URLRequest(url: authTokenUrl)
@@ -36,6 +37,7 @@ final class OAuth2Service {
     }
     func fetchOAuthToken(code: String, completion: @escaping (Result <String, Error>) -> Void) {
         guard let request = makeOAuthTokenRequest(code: code) else {
+            print("Не удалось создать запрос для получения токена")
             completion(.failure(NetworkError.invalidRequest))
             return
         }
@@ -47,9 +49,11 @@ final class OAuth2Service {
                     let response = try JSONDecoder().decode(OAuthTokenResponseBody.self, from: success)
                     completion(.success(response.accessToken))
                 } catch {
+                    print("Ошибка декодера при парсинге OAuthTokenResponseBody")
                     completion(.failure(NetworkError.decodingError(error)))
                 }
             case .failure(let error):
+                print("Ошибка при получении токена")
                 completion(.failure(error))
             }
         }

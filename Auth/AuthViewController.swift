@@ -65,9 +65,3 @@ extension AuthViewController: WebViewViewControllerDelegate {
         /*vc.dismiss(animated: true)*/
     }
 }
-
-// MARK: - OAuth2TokenStorage
-
-
-
-// MARK: - OAuth2Service

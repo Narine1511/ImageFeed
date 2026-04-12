@@ -6,20 +6,19 @@ final class SingleImageViewController: UIViewController {
         didSet {
             guard isViewLoaded, let image else { return }
             
-            imageView.image = image
+            imageView?.image = image
             /*imageView.frame.size = image.size*/
             rescaleAndCenterImageInScrollView(image: image)
         }
     }
     
-    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private var imageView: UIImageView?
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = image
+        imageView?.image = image
         
         guard let image else {return}
-        imageView.image = image
-        /*imageView.frame.size = image.size*/
+        imageView?.image = image
         rescaleAndCenterImageInScrollView(image: image)
         
     }
@@ -27,7 +26,7 @@ final class SingleImageViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView?
     
     
     @IBAction func didTapShareButton(_ sender: UIButton) {
@@ -40,6 +39,9 @@ final class SingleImageViewController: UIViewController {
     }
     
     private func rescaleAndCenterImageInScrollView(image: UIImage) {
+        guard let imageView = imageView else { return }
+        guard let scrollView = scrollView else { return }
+        
         view.layoutIfNeeded()
         
         let scrollViewSize = scrollView.bounds.size
@@ -55,6 +57,7 @@ final class SingleImageViewController: UIViewController {
         view.layoutIfNeeded()
         
         let imageViewSize = imageView.frame.size
+        
         let horizontalInset = max(0, (scrollViewSize.width) - imageViewSize.width) / 2;
         let verticalInset = max(0, (scrollViewSize.height) - imageViewSize.height) / 2;
         

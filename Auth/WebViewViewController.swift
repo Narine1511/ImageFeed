@@ -14,16 +14,16 @@ protocol WebViewViewControllerDelegate: AnyObject {
 
 final class WebViewViewController: UIViewController {
     
-    @IBOutlet weak var didTapBackButton: UINavigationItem!
-    @IBOutlet private var webView: WKWebView!
-    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var didTapBackButton: UINavigationItem?
+    @IBOutlet private var webView: WKWebView?
+    @IBOutlet weak var progressView: UIProgressView?
     
     weak var delegate: WebViewViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         /*webView.translatesAutoresizingMaskIntoConstraints = false*/
-        webView.navigationDelegate = self
+        webView?.navigationDelegate = self
         loadAuthView()
         updateProgress()
         
@@ -31,7 +31,7 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        webView.addObserver(self,
+        webView?.addObserver(self,
                             forKeyPath: #keyPath(WKWebView.estimatedProgress),
                             options: .new,
                             context: nil)
@@ -40,7 +40,7 @@ final class WebViewViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
+        webView?.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -51,13 +51,17 @@ final class WebViewViewController: UIViewController {
         }
     }
     private func updateProgress() {
-        progressView.progress = Float(webView.estimatedProgress)
-        progressView.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
+        guard let webView = webView else {
+            return
+        }
+        progressView?.progress = Float(webView.estimatedProgress)
+        progressView?.isHidden = fabs(webView.estimatedProgress - 1.0) <= 0.0001
     }
     
     
     private func loadAuthView() {
         guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeURLString) else {
+            print("Ошибка: не удалось создать urlComponents")
             return
         }
         urlComponents.queryItems = [
@@ -68,10 +72,11 @@ final class WebViewViewController: UIViewController {
         ]
         
         guard let url = urlComponents.url else {
+            print("Не удалось создать URL из urlComponents для авторизации")
             return
         }
         let request = URLRequest(url: url)
-        webView.load(request)
+        webView?.load(request)
         
         updateProgress()
     }
@@ -108,27 +113,4 @@ extension WebViewViewController: WKNavigationDelegate {
         }
     }
 }
-
-/*extension WebViewViewController: WKNavigationDelegate {
-    func webView(
-        _ webView: WKWebView,
-        decidePolicyFor navigationAction: WKNavigationAction,
-        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
-    ) {
-        if let code = code(from: navigationAction) {
-            delegate?.webViewViewController(self, didAuthenticateWithCode: code)
-            decisionHandler(.cancel)
-        } else {
-            decisionHandler(.allow)
-        }
-    }
-    
-    private func code(from navigationAction: WKNavigationAction) -> String?
-    {
-        guard let url = navigationAction.request.url else { return nil }
-        
-        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
-        return components?.queryItems?.first(where: { $0.name == "code" })?.value
-    }
-}*/
 
