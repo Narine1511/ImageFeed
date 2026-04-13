@@ -1,3 +1,9 @@
+//
+//  ProfileViewController.swift
+//  ImageFeed
+//
+//  Created by Наринэ  Овсепян on 20.02.2026.
+//
 
 import UIKit
 

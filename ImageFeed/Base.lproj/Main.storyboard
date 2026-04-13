@@ -52,7 +52,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaX-3O-3Wb">
-                                <rect key="frame" x="16" y="727" width="361" height="35"/>
+                                <rect key="frame" x="16" y="680" width="361" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="eTa-3x-6fH"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Войти">
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
@@ -76,7 +79,7 @@
                         <viewLayoutGuide key="safeArea" id="iix-qI-8mp"/>
                         <color key="backgroundColor" name="YP Black"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="QaX-3O-3Wb" secondAttribute="bottom" constant="90" id="F8H-Kx-US3"/>
+                            <constraint firstAttribute="bottom" secondItem="QaX-3O-3Wb" secondAttribute="bottom" constant="124" id="NNS-kl-fFS"/>
                             <constraint firstItem="uXv-DH-82h" firstAttribute="centerY" secondItem="av7-dd-w3u" secondAttribute="centerY" id="Ptn-Fm-jNr"/>
                             <constraint firstItem="QaX-3O-3Wb" firstAttribute="leading" secondItem="iix-qI-8mp" secondAttribute="leading" constant="16" id="e1j-31-jgF"/>
                             <constraint firstItem="iix-qI-8mp" firstAttribute="trailing" secondItem="QaX-3O-3Wb" secondAttribute="trailing" constant="16" id="lfL-r0-yz6"/>

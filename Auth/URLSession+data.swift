@@ -1,3 +1,9 @@
+//
+//  URLSession+data.swift
+//  ImageFeed
+//
+//  Created by Наринэ  Овсепян on 21.03.2026.
+//
 
 import Foundation
 
@@ -24,6 +30,9 @@ extension URLSession {
             if let data = data, let response = response, let statusCode = (response as? HTTPURLResponse)?.statusCode {
                 if 200 ..< 300 ~= statusCode {
                     fulfillCompletionOnTheMainThread(.success(data))
+                } else if 300..<400 ~= statusCode {
+                    print("Сообщение о перенаправлении: код \(statusCode)")
+                    fulfillCompletionOnTheMainThread(.failure(NetworkError.httpStatusCode(statusCode)))
                 } else if 400..<500 ~= statusCode {
                     print("Ошибка валидации: код \(statusCode)")
                     fulfillCompletionOnTheMainThread(.failure(NetworkError.httpStatusCode(statusCode)))

@@ -1,3 +1,9 @@
+//
+//  WebViewViewController.swift
+//  ImageFeed
+//
+//  Created by Наринэ  Овсепян on 08.03.2026.
+//
 
 import UIKit
 import WebKit
@@ -22,7 +28,6 @@ final class WebViewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*webView.translatesAutoresizingMaskIntoConstraints = false*/
         webView?.navigationDelegate = self
         loadAuthView()
         updateProgress()
