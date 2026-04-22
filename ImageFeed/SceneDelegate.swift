@@ -12,17 +12,14 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        OAuth2TokenStorage.shared.token = nil
-        guard let windowScene = scene as? UIWindowScene else { return }
+        /*OAuth2TokenStorage.shared.token != nil*/
+        guard let scene = (scene as? UIWindowScene) else { return }
         
-        window = UIWindow(windowScene: windowScene)
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let splashVC = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
-        
-        window?.rootViewController = splashVC
+        window = UIWindow(windowScene: scene)
+        window?.rootViewController = SplashViewController()
         window?.makeKeyAndVisible()
     }
+    
     func switchToTabBarController() {
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "TabBarViewController")
@@ -58,3 +55,22 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
 }
+
+
+//    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+//OAuth2TokenStorage.shared.token = nil
+//guard let windowScene = scene as? UIWindowScene else { return }
+//
+//window = UIWindow(windowScene: windowScene)
+//
+//let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//let splashVC = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
+//
+//window?.rootViewController = splashVC
+//window?.makeKeyAndVisible()
+//}
+//func switchToTabBarController() {
+//let tabBarController = UIStoryboard(name: "Main", bundle: .main)
+//    .instantiateViewController(withIdentifier: "TabBarViewController")
+//window?.rootViewController = tabBarController
+//}
