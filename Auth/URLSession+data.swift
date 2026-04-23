@@ -32,23 +32,23 @@ extension URLSession {
                 if 200 ..< 300 ~= statusCode {
                     fulfillCompletionOnTheMainThread(.success(data))
                 } else if 300..<400 ~= statusCode {
-                    print("Сообщение о перенаправлении: код \(statusCode)")
+                    print("[data]: Сообщение о перенаправлении: код \(statusCode)")
                     fulfillCompletionOnTheMainThread(.failure(NetworkError.httpStatusCode(statusCode)))
                 } else if 400..<500 ~= statusCode {
-                    print("Ошибка валидации: код \(statusCode)")
+                    print("[data]: Ошибка валидации: код \(statusCode)")
                     fulfillCompletionOnTheMainThread(.failure(NetworkError.httpStatusCode(statusCode)))
                 } else if 500..<600 ~= statusCode {
-                    print("Ошибка сервера: код \(statusCode)")
+                    print("[data]: Ошибка сервера: код \(statusCode)")
                     fulfillCompletionOnTheMainThread(.failure(NetworkError.httpStatusCode(statusCode)))
                 } else {
                     fulfillCompletionOnTheMainThread(.failure(NetworkError.httpStatusCode(statusCode)))
                 }
             }
             else if let error = error {
-                print("Сетевая ошибка")
+                print("[data]: Сетевая ошибка")
                 fulfillCompletionOnTheMainThread(.failure(NetworkError.urlRequestError(error)))
             } else {
-                print("Неизвестная ошибка")
+                print("[data]: Неизвестная ошибка")
                 fulfillCompletionOnTheMainThread(.failure(NetworkError.urlSessionError))
             }
         }
@@ -67,21 +67,21 @@ extension URLSession {
             switch result {
             case .success(let data):
                 if let jsonString = String(data:data, encoding: .utf8) {
-                    print("Полученные данные: \(jsonString)")
+                    print("[objectTask]: Полученные данные: \(jsonString)")
                 }
                 do {
                     let decodedObject = try decoder.decode(T.self, from: data)
                     completion(.success(decodedObject))
                 } catch {
                     if let decodingError = error as? DecodingError {
-                        print("Ошибка декодирования: \(decodingError)")
+                        print("[objectTask]: Ошибка декодирования: \(decodingError)")
                     } else {
-                        print("Ошибка декодирования: \(error.localizedDescription)")
+                        print("[objectTask]: Ошибка декодирования: \(error.localizedDescription)")
                     }
                     completion(.failure(error))
                 }
             case .failure(let error):
-                print("Ошибка запроса: \(error.localizedDescription)")
+                print("[objectTask]: Ошибка запроса: \(error.localizedDescription)")
                 completion(.failure(error))
             }
         }

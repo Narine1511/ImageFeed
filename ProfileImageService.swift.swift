@@ -44,7 +44,7 @@ final class ProfileImageService {
         task?.cancel()
         
         guard let token = OAuth2TokenStorage.shared.token else {
-            completion(.failure(NSError(domain: "ProfileImageService", code: 401, userInfo: [NSLocalizedDescriptionKey: "Authorization token missing"])))
+            completion(.failure(NSError(domain: "ProfileImageService",code: 401, userInfo: [NSLocalizedDescriptionKey: "Authorization token missing"])))
             return
         }
         

@@ -43,19 +43,7 @@ final class WebViewViewController: UIViewController {
         })
         updateProgress()
     }
-    
-    /*override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        webView?.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), context: nil)
-    }*/
-    
-    /*override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == #keyPath(WKWebView.estimatedProgress) {
-            updateProgress()
-        } else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
-    }*/
+
     private func updateProgress() {
         guard let webView = webView else {
             return
@@ -67,7 +55,7 @@ final class WebViewViewController: UIViewController {
     
     private func loadAuthView() {
         guard var urlComponents = URLComponents(string: WebViewConstants.unsplashAuthorizeURLString) else {
-            print("Ошибка: не удалось создать urlComponents")
+            print("[loadAuthView]: Ошибка: не удалось создать urlComponents")
             return
         }
         urlComponents.queryItems = [
@@ -78,7 +66,7 @@ final class WebViewViewController: UIViewController {
         ]
         
         guard let url = urlComponents.url else {
-            print("Не удалось создать URL из urlComponents для авторизации")
+            print("[loadAuthView]: Ошибка: Не удалось создать URL из urlComponents для авторизации")
             return
         }
         let request = URLRequest(url: url)

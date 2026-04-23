@@ -20,7 +20,7 @@ final class OAuth2Service {
     
     func makeOAuthTokenRequest(code: String) -> URLRequest? {
         guard var urlComponents = URLComponents(string: "https://unsplash.com/oauth/token") else {
-            assertionFailure("Failed to create URL")
+            print("[makeOAuthTokenRequest]: Ошибка: не удалось создать URL")
             return nil
         }
         
@@ -37,7 +37,7 @@ final class OAuth2Service {
         ]
         
         guard let authTokenUrl = urlComponents.url else {
-            print("Не удалось создать URL для токена")
+            print("[makeOAuthTokenRequest] Ошибка: не удалось создать URL для токена")
             return nil
         }
         var request = URLRequest(url: authTokenUrl)
@@ -56,7 +56,7 @@ final class OAuth2Service {
     func fetchOAuthToken(code: String, completion: @escaping (Result <String, Error>) -> Void) {
         assert(Thread.isMainThread)
         guard lastCode != code else {
-            print("Ошибка: уже выполняется запрос с таким же кодом")
+            print("[fetchOAuthToken]: Ошибка: уже выполняется запрос с таким же кодом")
             completion(.failure(AuthServiceError.invalidRequest))
             return
         }
@@ -64,7 +64,7 @@ final class OAuth2Service {
         lastCode = code
         
         guard let request = makeOAuthTokenRequest(code: code) else {
-            print("Не удалось создать запрос для получения токена")
+            print("[fetchOAuthToken]: Ошибка: не удалось создать запрос для получения токена")
             completion(.failure(NetworkError.invalidRequest))
             return
         }

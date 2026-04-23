@@ -43,7 +43,7 @@ final class ProfileService {
     func fetchProfile(_ token: String, completion: @escaping (Result<Profile, Error>) -> Void) {
         
         guard lastToken != token else {
-            print("ProfileService: уже выполняется запрос с таким же токеном")
+            print("[fetchProfile]: Ошибка: уже выполняется запрос с таким же токеном")
             completion(.failure(AuthServiceError.invalidRequest))
             return
         }
@@ -52,7 +52,7 @@ final class ProfileService {
         lastToken = token
         
         guard let request = makeProfileRequest(token: token) else {
-            print("ProfileService: не удалось создать запрос")
+            print("[fetchProfile]: Ошибка: не удалось создать запрос")
             completion(.failure(URLError(.badURL)))
             return
         }
@@ -85,7 +85,7 @@ final class ProfileService {
         }
         private func makeProfileRequest(token: String) -> URLRequest? {
             guard let url = URL(string: "https://api.unsplash.com/me") else {
-                print("ProfileService: неверный URL")
+                print("[makeProfileRequest]: Ошибка: неверный URL")
                 return nil
             }
             var request = URLRequest(url: url)

@@ -25,7 +25,7 @@ final class AuthViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("🔐 AuthViewController загружен")
+        print("[viewDidLoad]: AuthViewController загружен")
         configureBackButton()
     }
     
@@ -33,7 +33,7 @@ final class AuthViewController: UIViewController {
         if segue.identifier == showWebViewSegueIdentifier {
             
             guard !isAuthorizing else {
-                print("Авторизация уже идет, WebView не будет открыт")
+                print("[prepare]: Авторизация уже идет, WebView не будет открыт")
                 return
             }
             
@@ -56,17 +56,6 @@ final class AuthViewController: UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style:  .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem?.tintColor = UIColor(named: "ypBlack")
     }
-    
-/*    private func showAuthError() {
-        let alert = UIAlertController(
-            title: "Ошибка авторизации",
-            message: "Не удалось войти в систему. Попробуйте ещё раз",
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        isAuthorizing = false
-        present(alert, animated: true)
-        
-    }*/
 }
 
 extension AuthViewController {
@@ -105,7 +94,7 @@ extension AuthViewController: WebViewViewControllerDelegate {
                     self.delegate?.didAuthenticate(self)
                 }
             case .failure(let error):
-                print("Ошибка получения токена: \(error)")
+                print("[webViewViewController]: Ошибка получения токена: \(error)")
                 vc.dismiss(animated: true)
                 self.showAuthErrorAlert()
                 break

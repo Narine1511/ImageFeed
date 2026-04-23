@@ -35,7 +35,7 @@ final class ProfileViewController: UIViewController {
                 object: nil,
                 queue: .main
             ) { [weak self] _ in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.updateAvatar()
             }
         updateAvatar()
@@ -46,8 +46,6 @@ final class ProfileViewController: UIViewController {
             let profileImageURL = ProfileImageService.shared.avatarURL,
             let imageUrl = URL(string: profileImageURL)
         else { return }
-        
-        print("imageUrl: \(imageUrl)")
         
         let placeholderImage = UIImage(systemName: "person.circle.fill")?
             .withTintColor(.lightGray, renderingMode: .alwaysOriginal)
@@ -68,10 +66,8 @@ final class ProfileViewController: UIViewController {
                 switch result {
                 case .success(let value):
                     print(value.image)
-                    
                     print(value.cacheType)
                     print(value.source)
-                    
                     
                 case .failure(let error):
                     print(error)
@@ -130,7 +126,7 @@ final class ProfileViewController: UIViewController {
                                            target: self,
                                            action: #selector(self.didTapButton)
         )
-        button.tintColor = .red
+        button.tintColor = .ypRed
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)
         button.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true

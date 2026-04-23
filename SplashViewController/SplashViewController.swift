@@ -2,7 +2,7 @@
 import UIKit
 
 final class SplashViewController: UIViewController {
-   /* private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"*/
+    /* private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"*/
     private let storage = OAuth2TokenStorage.shared
     private let profileService = ProfileService.shared // синглтон
     
@@ -74,7 +74,7 @@ final class SplashViewController: UIViewController {
                 ProfileImageService.shared.fetchProfileImageURL(username: profile.username) { _ in }
                 self.switchToTabBarController()
             case let .failure(error):
-                print(error)
+                print("[fetchProfile]: Ошибка: \(error)")
                 break
             }
         }
@@ -87,23 +87,3 @@ extension SplashViewController: AuthViewControllerDelegate {
         switchToTabBarController()
     }
 }
-
-
-
-
-/*extension SplashViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == showAuthenticationScreenSegueIdentifier {
-            guard
-                let navigationController = segue.destination as? UINavigationController,
-                let viewController = navigationController.viewControllers[0] as? AuthViewController
-            else {
-                assertionFailure("Failed to prepare for \(showAuthenticationScreenSegueIdentifier)")
-                return
-            }
-            viewController.delegate = self
-        } else {
-            super.prepare(for: segue, sender: sender)
-        }
-    }
-}*/
