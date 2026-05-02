@@ -11,10 +11,11 @@
 		C0E126AA2F94F43D006DF49A /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E126A92F94F42B006DF49A /* TabBarController.swift */; };
 		C0E126AC2F9600C3006DF49A /* UIBlockingProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E126AB2F96009A006DF49A /* UIBlockingProgressHUD.swift */; };
 		C0E126AE2F962A35006DF49A /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E126AD2F962A1E006DF49A /* ProfileService.swift */; };
-		C0E126B02F972329006DF49A /* ProfileImageService.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E126AF2F972326006DF49A /* ProfileImageService.swift.swift */; };
+		C0E126B02F972329006DF49A /* ProfileImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E126AF2F972326006DF49A /* ProfileImageService.swift */; };
 		C0E126B72F992648006DF49A /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C0E126B62F992648006DF49A /* Kingfisher */; };
 		C0E126BA2F9933E2006DF49A /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = C0E126B92F9933E2006DF49A /* SwiftKeychainWrapper */; };
 		C0E126BD2F9946C2006DF49A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0E126BC2F9946C2006DF49A /* WebKit.framework */; };
+		C0E127152FA2485D006DF49A /* ImagesListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E127142FA2485B006DF49A /* ImagesListService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +42,9 @@
 		C0E126A92F94F42B006DF49A /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C0E126AB2F96009A006DF49A /* UIBlockingProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBlockingProgressHUD.swift; sourceTree = "<group>"; };
 		C0E126AD2F962A1E006DF49A /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
-		C0E126AF2F972326006DF49A /* ProfileImageService.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift.swift; sourceTree = "<group>"; };
+		C0E126AF2F972326006DF49A /* ProfileImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageService.swift; sourceTree = "<group>"; };
 		C0E126BC2F9946C2006DF49A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C0E127142FA2485B006DF49A /* ImagesListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -138,7 +140,8 @@
 		C06D8F532F2F856D00C78F45 = {
 			isa = PBXGroup;
 			children = (
-				C0E126AF2F972326006DF49A /* ProfileImageService.swift.swift */,
+				C0E127142FA2485B006DF49A /* ImagesListService.swift */,
+				C0E126AF2F972326006DF49A /* ProfileImageService.swift */,
 				C0E126AD2F962A1E006DF49A /* ProfileService.swift */,
 				C0E126AB2F96009A006DF49A /* UIBlockingProgressHUD.swift */,
 				C0E126A92F94F42B006DF49A /* TabBarController.swift */,
@@ -333,8 +336,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E126AE2F962A35006DF49A /* ProfileService.swift in Sources */,
-				C0E126B02F972329006DF49A /* ProfileImageService.swift.swift in Sources */,
+				C0E126B02F972329006DF49A /* ProfileImageService.swift in Sources */,
 				C0E126AC2F9600C3006DF49A /* UIBlockingProgressHUD.swift in Sources */,
+				C0E127152FA2485D006DF49A /* ImagesListService.swift in Sources */,
 				C0E126AA2F94F43D006DF49A /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
