@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import ProgressHUD
 
 protocol AuthViewControllerDelegate: AnyObject {
     func didAuthenticate(_ vc: AuthViewController)
@@ -20,20 +21,29 @@ final class AuthViewController: UIViewController {
     
     weak var delegate: AuthViewControllerDelegate?
     
+    private var isAuthorizing = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("🔐 AuthViewController загружен")
+        print("[viewDidLoad]: AuthViewController загружен")
         configureBackButton()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == showWebViewSegueIdentifier {
+            
+            guard !isAuthorizing else {
+                print("[prepare]: Авторизация уже идет, WebView не будет открыт")
+                return
+            }
+            
             guard
                 let webViewViewController = segue.destination as? WebViewViewController
             else {
                 assertionFailure("Failed to prepare for \(showWebViewSegueIdentifier)")
                 return
             }
+            isAuthorizing = true
             webViewViewController.delegate = self
         } else {
             super.prepare(for: segue, sender: sender)
@@ -48,11 +58,34 @@ final class AuthViewController: UIViewController {
     }
 }
 
+extension AuthViewController {
+    private func showAuthErrorAlert() {
+        let alertController = UIAlertController(
+            title: "Что-то пошло не так",
+            message: "Не удалось войти в систему",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(
+            title: "Ok",
+            style: .default,
+            handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+}
+
 // MARK: - AuthViewController + WebViewViewControllerDelegate
 extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
-        /*vc.dismiss(animated: true)*/
+        vc.dismiss(animated: true)
+        /*ProgressHUD.animate()*/
+        
+        UIBlockingProgressHUD.show()
+        
         OAuth2Service.shared.fetchOAuthToken(code: code) { [weak self] result in
+            /*ProgressHUD.dismiss()*/
+            UIBlockingProgressHUD.dismiss()
+            
             guard let self else {return}
             switch result{
             case .success(let token):
@@ -61,8 +94,9 @@ extension AuthViewController: WebViewViewControllerDelegate {
                     self.delegate?.didAuthenticate(self)
                 }
             case .failure(let error):
-                print("Ошибка получения токена: \(error)")
+                print("[webViewViewController]: Ошибка получения токена: \(error)")
                 vc.dismiss(animated: true)
+                self.showAuthErrorAlert()
                 break
             }
         }
