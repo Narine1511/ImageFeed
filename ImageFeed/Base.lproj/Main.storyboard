@@ -174,6 +174,9 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="Active"/>
+                                                    <connections>
+                                                        <action selector="likeButtonClicked" destination="Rsy-X6-lFn" eventType="touchUpInside" id="JbY-Pu-8Jo"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 февраля 2026" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q4Z-Yj-5lg" userLabel="Date Label">
                                                     <rect key="frame" x="24" y="104" width="361" height="16"/>

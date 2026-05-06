@@ -100,21 +100,20 @@ final class ImagesListService {
                         isLiked: photoResult.likedByUser
                     )
                 }
-                    
+                
                 DispatchQueue.main.async {
                     
                     self.photos.append(contentsOf: newPhotos)
                     self.lastLoadedPage = nextPage
                     
-                    NotificationCenter.defaultpost(name: ImagesListService.didChangeNotification, object: nil)
-                    
-                case .failure(let error):
-                    print("[fetchPhotosNextPage]: Ошибка: \(error)")
+                    NotificationCenter.default.post(name: ImagesListService.didChangeNotification, object: nil)
                 }
+            case .failure(let error):
+                print("[fetchPhotosNextPage]: Ошибка: \(error)")
             }
-            self.task = task
-            task.resume()
         }
+        self.task = task
+        task.resume()
     }
     
     private func makePhotosRequest(page: Int) -> URLRequest? {
@@ -146,5 +145,73 @@ final class ImagesListService {
             return nil
         }
         return request
+    }
+    
+    func changeLike(photoId: String, isLike: Bool, _ completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let request = makeLikeRequest(photoId: photoId, isLike: isLike) else {
+            print("[changeLike]: Ошибка: не удалось создать запрос")
+            completion(.failure(NetworkError.invalidRequest))
+            return
+        }
+        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<Data, Error>) in
+            guard let self = self else {return}
+            switch result {
+            case .success:
+                self.updatePhotoLikeStatus(photoId: photoId, isLike: isLike)
+                completion(.success(()))
+            case .failure(let error):
+                print("[changeLike]: Ошибка: \(error.localizedDescription)")
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+        
+    }
+    
+    private func updatePhotoLikeStatus(photoId: String, isLike: Bool) {
+        DispatchQueue.main.async {
+            if let index = self.photos.firstIndex(where: { $0.id == photoId}) {
+                let photo = self.photos[index]
+                
+                let newPhoto = Photo(
+                    id: photo.id,
+                    size: photo.size,
+                    createdAt: photo.createdAt,
+                    welcomeDescription: photo.welcomeDescription,
+                    thumbImageURL: photo.thumbImageURL,
+                    largeImageURL: photo.largeImageURL,
+                    isLiked: !photo.isLiked
+                )
+                self.photos[index] = newPhoto
+            }
+        }
+    }
+    
+    private func makeLikeRequest(photoId: String, isLike: Bool) -> URLRequest? {
+        guard let url = URL(string: "https://api.unsplash.com/photos/\(photoId)/like") else {
+            print("[makeLikeRequest]: Ошибка: не удалось создать URL")
+            return nil
+        }
+        var request = URLRequest(url: url)
+        if isLike {
+            request.httpMethod = "POST"
+        } else {
+            request.httpMethod = "DELETE"
+        }
+        if let token = OAuth2TokenStorage.shared.token {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        } else {
+            print("[makeLikeRequest]: Ошибка: отсутствует токен")
+            return nil
+        }
+        return request
+    }
+    
+    func resetPhotos() {
+        photos = []
+        lastLoadedPage = nil
+        task?.cancel()
+        task = nil
+        isFetching = false
     }
 }
