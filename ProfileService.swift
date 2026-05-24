@@ -57,7 +57,7 @@ final class ProfileService {
             return
         }
         let task = URLSession.shared.objectTask(for: request) { [weak self] (result: Result<ProfileResult, Error>) in
-           /* guard let self = self else { return }*/
+            /* guard let self = self else { return }*/
             defer {
                 self?.task = nil
                 self?.lastToken = nil
@@ -80,17 +80,24 @@ final class ProfileService {
             }
             /*self?.task = nil*/
         }
-            self.task = task
-            task.resume()
-        }
-        private func makeProfileRequest(token: String) -> URLRequest? {
-            guard let url = URL(string: "https://api.unsplash.com/me") else {
-                print("[makeProfileRequest]: Ошибка: неверный URL")
-                return nil
-            }
-            var request = URLRequest(url: url)
-            request.httpMethod = "GET"
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            return request
-        }
+        self.task = task
+        task.resume()
     }
+    private func makeProfileRequest(token: String) -> URLRequest? {
+        guard let url = URL(string: "https://api.unsplash.com/me") else {
+            print("[makeProfileRequest]: Ошибка: неверный URL")
+            return nil
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+    
+    func resetProfile() {
+        profile = nil
+        lastToken = nil
+        task?.cancel()
+        task = nil
+    }
+}

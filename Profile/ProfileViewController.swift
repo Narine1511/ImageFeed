@@ -138,6 +138,18 @@ final class ProfileViewController: UIViewController {
     private func didTapButton() {
         nameLabel?.removeFromSuperview()
         nameLabel = nil
+        let alert = UIAlertController(
+                title: "Выход",
+                message: "Уверены, что хотите выйти?",
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(UIAlertAction(title: "Нет", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Да", style: .destructive) { _ in
+                ProfileLogoutService.shared.logout()
+            })
+            
+            present(alert, animated: true)
     }
     
     private func updateProfileDetails() {
