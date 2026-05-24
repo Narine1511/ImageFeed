@@ -21,9 +21,26 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func switchToTabBarController() {
-        let tabBarController = UIStoryboard(name: "Main", bundle: .main)
+        
+        let imagesListVC = ImagesListViewController()
+        let imagesListPresenter = ImageListPresenter()
+        imagesListVC.configure(imagesListPresenter)
+        
+        let profileVC = ProfileViewController()
+        let profilePresenter = ProfilePresenter()
+        profileVC.configure(profilePresenter)
+        
+        
+        /*let tabBarController = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "TabBarViewController")
+        window?.rootViewController = tabBarController*/
+        let tabBarController = UITabBarController()
+            tabBarController.viewControllers = [imagesListVC, profileVC]
+      
+        
         window?.rootViewController = tabBarController
+            window?.makeKeyAndVisible()
+
     }
     
     func switchToAuthViewController() {
