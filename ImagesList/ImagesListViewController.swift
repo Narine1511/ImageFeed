@@ -15,10 +15,14 @@ final class ImagesListViewController: UIViewController, ImagesListViewProtocol {
     var photos: [Photo] = []
     
     func configure(_ presenter: ImagesListPresenterProtocol) {
+        print("🔧 configure вызван с presenter = \(presenter)")
         self.presenter = presenter
         presenter.view = self
+        print("✅ self.presenter = \(self.presenter != nil ? "есть" : "nil")")
     }
-    @IBOutlet private var tableView: UITableView?
+   /* @IBOutlet private var tableView: UITableView?*/
+    
+    @IBOutlet var tableView: UITableView!
     
     
     private lazy var dateFormatter: DateFormatter = {
@@ -31,10 +35,10 @@ final class ImagesListViewController: UIViewController, ImagesListViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("🔍 tableView = \(tableView != nil ? "подключен ✅" : "nil ❌")")
         tableView?.rowHeight = 200
         tableView?.contentInset = UIEdgeInsets(top: 12, left: 0, bottom: 12, right: 0)
-        print("есть ✅ : nil ❌")
+        print("🔍 presenter = \(presenter != nil ? "ЕСТЬ ✅" : "nil ❌")")
         presenter?.viewDidLoad()
     }
 
@@ -59,10 +63,12 @@ final class ImagesListViewController: UIViewController, ImagesListViewProtocol {
 extension ImagesListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("📊 numberOfRowsInSection = \(photos.count)")
         return photos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("🎨 cellForRowAt вызван для строки \(indexPath.row)")
         let cell = tableView.dequeueReusableCell(withIdentifier: ImagesListCell.reuseIdentifier, for: indexPath)
         
         guard let imageListCell = cell as? ImagesListCell else {

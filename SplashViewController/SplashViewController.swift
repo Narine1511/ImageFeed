@@ -53,7 +53,7 @@ final class SplashViewController: UIViewController {
         present(authViewController, animated: true)
     }
     
-    private func switchToTabBarController() {
+   /* private func switchToTabBarController() {
         guard let window = UIApplication.shared.windows.first else {
             assertionFailure("Invalid window configuration")
             return
@@ -61,7 +61,31 @@ final class SplashViewController: UIViewController {
         let tabBarController = UIStoryboard(name: "Main", bundle: .main)
             .instantiateViewController(withIdentifier: "TabBarViewController")
         window.rootViewController = tabBarController
+    }*/
+    
+    private func switchToTabBarController() {
+        guard let window = UIApplication.shared.windows.first else {
+            assertionFailure("Invalid window configuration")
+            return
+        }
+        
+        // Создаём контроллеры с презентерами
+        let imagesListVC = ImagesListViewController()
+        let imagesListPresenter = ImageListPresenter()
+        imagesListVC.configure(imagesListPresenter)
+        
+        let profileVC = ProfileViewController()
+        let profilePresenter = ProfilePresenter()
+        profileVC.configure(profilePresenter)
+        
+        // Создаём таб-бар
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [imagesListVC, profileVC]
+        
+        window.rootViewController = tabBarController
     }
+    
+    
     
     private func fetchProfile(token: String) {
         UIBlockingProgressHUD.show()

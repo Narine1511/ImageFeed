@@ -223,7 +223,7 @@
                     <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="LPT-hG-n1t"/>
                     <navigationItem key="navigationItem" id="Wqa-7z-fPI"/>
                     <connections>
-                        <outlet property="tableView" destination="GYj-RI-Hkq" id="th7-Sb-Jyb"/>
+                        <outlet property="tableView" destination="8bC-Xf-vdC" id="XFN-9D-2iE"/>
                         <segue destination="0lJ-jl-ZN1" kind="presentation" identifier="ShowSingleImage" id="E2Z-l7-uSB"/>
                     </connections>
                 </viewController>

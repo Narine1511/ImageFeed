@@ -20,8 +20,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     
-    func switchToTabBarController() {
-        
+        func switchToTabBarController() {
+        print("запуск")
         let imagesListVC = ImagesListViewController()
         let imagesListPresenter = ImageListPresenter()
         imagesListVC.configure(imagesListPresenter)
