@@ -5,7 +5,7 @@
 //  Created by Наринэ  Овсепян on 24.05.2026.
 //
 
-import Foundation
+/*import Foundation
 import UIKit
 
 protocol ImagesListPresenterProtocol: AnyObject {
@@ -82,4 +82,4 @@ final class ImageListPresenter: ImagesListPresenterProtocol {
             self.view?.updateTableViewAnimated(oldCount: oldCount, newCount: newCount)
         }
     }
-}
+}*/
