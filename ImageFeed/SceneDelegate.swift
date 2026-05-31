@@ -63,22 +63,3 @@ func sceneDidEnterBackground(_ scene: UIScene) {
     // to restore the scene back to its current state.
 }
 
-
-
-//    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-//OAuth2TokenStorage.shared.token = nil
-//guard let windowScene = scene as? UIWindowScene else { return }
-//
-//window = UIWindow(windowScene: windowScene)
-//
-//let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//let splashVC = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
-//
-//window?.rootViewController = splashVC
-//window?.makeKeyAndVisible()
-//}
-//func switchToTabBarController() {
-//let tabBarController = UIStoryboard(name: "Main", bundle: .main)
-//    .instantiateViewController(withIdentifier: "TabBarViewController")
-//window?.rootViewController = tabBarController
-//}
