@@ -16,10 +16,7 @@ final class TabBarController: UITabBarController {
         let presenter = ImageListPresenter()
         imagesListViewController.presenter = presenter
         presenter.view = imagesListViewController as? any ImagesListViewProtocol
-        
-        
-        
-        
+
         
         let profileViewController = ProfileViewController()
         profileViewController.tabBarItem = UITabBarItem(

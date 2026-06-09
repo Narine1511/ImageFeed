@@ -43,6 +43,7 @@ final class ImageFeedUITests: XCTestCase {
     func testAuth() throws {
         let app = XCUIApplication()
         app.launch()
+        sleep(8)
         app.buttons["Authenticate"].tap()
         
         let webView = app.webViews["UnsplashWebView"]
@@ -83,8 +84,8 @@ final class ImageFeedUITests: XCTestCase {
         sleep(3)
         
         let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
-        cellToLike.buttons["like button off"].tap()
-        cellToLike.buttons["like button on"].tap()
+        cellToLike.buttons["like_button_off"].tap()
+        cellToLike.buttons["like_button_on"].tap()
         
         sleep(3)
         
@@ -102,16 +103,19 @@ final class ImageFeedUITests: XCTestCase {
     }
     
     func testProfile() throws {
+
         let app = XCUIApplication()
         app.launch()
-        sleep(3)
+        sleep(8)
         
+        let tabBar = app.tabBars.firstMatch
+        sleep(5)
         app.tabBars.buttons.element(boundBy: 1).tap()
+       
+        XCTAssertTrue(app.staticTexts["Екатерина Новикова"].exists)
+        XCTAssertTrue(app.staticTexts["@ekaterina_now"].exists)
         
-        XCTAssertTrue(app.staticTexts["Name Lastname"].exists)
-        XCTAssertTrue(app.staticTexts["@username"].exists)
-        
-        app.buttons["logout button"].tap()
+        app.buttons["exitImage"].tap()
         
         app.alerts["Bye bye!"].scrollViews.otherElements.buttons["Yes"].tap()
     }
