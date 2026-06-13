@@ -81,7 +81,7 @@ extension AuthViewController {
 // MARK: - AuthViewController + WebViewViewControllerDelegate
 extension AuthViewController: WebViewViewControllerDelegate {
     func webViewViewController(_ vc: WebViewViewController, didAuthenticateWithCode code: String) {
-        vc.dismiss(animated: true)
+          vc.dismiss(animated: true)
         /*ProgressHUD.animate()*/
         
         UIBlockingProgressHUD.show()

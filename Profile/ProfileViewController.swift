@@ -85,6 +85,7 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
                                            target: self,
                                            action: #selector(self.didTapButton)
         )
+        button.accessibilityIdentifier = "exitImage"
         button.tintColor = .ypRed
         button.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(button)

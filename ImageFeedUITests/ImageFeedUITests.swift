@@ -64,6 +64,8 @@ final class ImageFeedUITests: XCTestCase {
         passwordTextField.typeText("")
         webView.swipeUp()
         
+        app.buttons["Done"].firstMatch.tap()
+        
         webView.buttons["Login"].tap()
         
         let tableQuery = app.tables
@@ -84,7 +86,7 @@ final class ImageFeedUITests: XCTestCase {
         sleep(3)
         
         let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
-        cellToLike.buttons["like_button_off"].tap()
+       /* cellToLike.buttons["like_button_off"].tap()*/
         cellToLike.buttons["like_button_on"].tap()
         
         sleep(3)
@@ -98,7 +100,7 @@ final class ImageFeedUITests: XCTestCase {
         image.pinch(withScale: 3, velocity: 1)
         image.pinch(withScale: 0.5, velocity: -1)
         
-        let navBackButtonWhiteButton = app.buttons["nav back button white"]
+        let navBackButtonWhiteButton = app.buttons["nav_back_button"]
         navBackButtonWhiteButton.tap()
     }
     
