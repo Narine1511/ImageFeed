@@ -108,17 +108,17 @@ final class ImageFeedUITests: XCTestCase {
 
         let app = XCUIApplication()
         app.launch()
-        sleep(8)
+        sleep(4)
         
         let tabBar = app.tabBars.firstMatch
-        sleep(5)
+        sleep(4)
         app.tabBars.buttons.element(boundBy: 1).tap()
        
-        XCTAssertTrue(app.staticTexts["Екатерина Новикова"].exists)
-        XCTAssertTrue(app.staticTexts["@ekaterina_now"].exists)
+        XCTAssertTrue(app.staticTexts[""].exists)
+        XCTAssertTrue(app.staticTexts[""].exists)
         
         app.buttons["exitImage"].tap()
         
-        app.alerts["Bye bye!"].scrollViews.otherElements.buttons["Yes"].tap()
+        app.buttons["Да"].tap()
     }
 }

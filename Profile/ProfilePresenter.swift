@@ -47,6 +47,7 @@ final class ProfilePresenter: ProfilePresenterProtocol {
     }
     
     func didTapLogout() {
+        print("🔵 [Presenter] didTapLogout вызван")
         view?.showLogoutAlert()
     }
     

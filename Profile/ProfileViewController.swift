@@ -96,11 +96,12 @@ final class ProfileViewController: UIViewController, ProfileViewProtocol {
     
     @objc
     private func didTapButton() {
+
         presenter?.didTapLogout()
     }
     
     func displayProfileData(name: String, login: String, description: String) {
-        
+
         nameLabel?.text = name
         loginNameLabel?.text = login
         descriptionLabel?.text = description
