@@ -170,9 +170,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="like_button_on" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKx-PD-o6o">
+                                                <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="like_button" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKx-PD-o6o">
                                                     <rect key="frame" x="317" y="4" width="68" height="44"/>
-                                                    <accessibility key="accessibilityConfiguration" identifier="like_button_on"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="like_button"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="1oK-YH-79v"/>
                                                     </constraints>
