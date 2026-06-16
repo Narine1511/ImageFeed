@@ -5,7 +5,7 @@
 //  Created by Наринэ  Овсепян on 01.02.2026.
 //
 
-import UIKit //рабочий код
+import UIKit
 import Kingfisher
 
 final class ImagesListViewController: UIViewController {
@@ -84,6 +84,9 @@ extension ImagesListViewController {
         
         let likeImage = photo.isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
         cell.likeButton?.setImage(likeImage, for: .normal)
+        
+        cell.likeButton?.accessibilityValue = photo.isLiked ? "like_button_on" : "like_button_off"
+                cell.likeButton?.accessibilityLabel = photo.isLiked ? "like button on" : "like button off"
     }
 }
 
@@ -133,6 +136,16 @@ extension ImagesListViewController: ImagesListCellDelegate {
         func updateLikeStatus(at index: Int, isLiked: Bool) {
             // Эта команда придёт от презентера, когда успешно поставился/снялся лайк
             // Пока оставим заглушку, потом доделаем
+            // добавила код 15 июня
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) as? ImagesListCell {
+                let likeImage = isLiked ? UIImage(named: "like_button_on") : UIImage(named: "like_button_off")
+                cell.likeButton?.setImage(likeImage, for: .normal)
+                cell.likeButton?.accessibilityValue = isLiked ? "like_button_on" : "like_button_off"
+                            cell.likeButton?.accessibilityLabel = isLiked ? "like button on" : "like button off"
+            } else {
+                tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
             print("🔄 Обновляем лайк в ячейке \(index), статус: \(isLiked)")
         }
         

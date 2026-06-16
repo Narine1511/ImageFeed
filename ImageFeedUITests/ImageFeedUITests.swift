@@ -81,30 +81,29 @@ final class ImageFeedUITests: XCTestCase {
         let table = app.tables.firstMatch
         XCTAssertTrue(table.waitForExistence(timeout: 10))
         
-        let tablesQuery = app.tables
-        
-        let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
-        XCTAssertTrue(cell.waitForExistence(timeout: 5))
-        cell.swipeUp()
-        sleep(3)
-        
-        let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
-        
+        table.swipeUp()
+        sleep(5)
+    
+        let cellToLike = app.tables.cells.element(boundBy: 0)
+           /* XCTAssertTrue(cellToLike.waitForExistence(timeout: 5), "Ячейка не появилась")*/
         let likeButton = cellToLike.buttons["like_button"]
-        XCTAssertTrue(likeButton.waitForExistence(timeout: 3))
-        while !likeButton.exists {
-            cellToLike.swipeUp()
-            sleep(1)
-        }
+            XCTAssertTrue(likeButton.waitForExistence(timeout: 3))
         
-        cellToLike.buttons["like_button"].tap()
+        let initialValue = likeButton.value as? String
         
+        likeButton.tap()
+        sleep(5)
+        
+        let afterFirstTap = likeButton.value as? String
+        XCTAssertNotEqual(initialValue, afterFirstTap)
+        
+        likeButton.tap()
         sleep(3)
         
-        cellToLike.buttons["like_button"].tap()
+        let final = likeButton.value as? String
+        XCTAssertEqual(initialValue, final)
         
         cellToLike.tap()
-        
         sleep(3)
         
         let image = app.scrollViews.images.element(boundBy: 0)
@@ -114,7 +113,9 @@ final class ImageFeedUITests: XCTestCase {
         image.pinch(withScale: 0.5, velocity: -1)
         
         let navBackButtonWhiteButton = app.buttons["nav_back_button"]
+        XCTAssertTrue(navBackButtonWhiteButton.waitForExistence(timeout: 3))
         navBackButtonWhiteButton.tap()
+        
     }
     
     func testProfile() throws {
@@ -149,39 +150,5 @@ final class ImageFeedUITests: XCTestCase {
         let authButton = app.buttons["Войти"]
         XCTAssertTrue(authButton.waitForExistence(timeout: 5))
     }
+    
 }
-
-
-//func testFeed() throws {
-//    let app = XCUIApplication()
-//    app.launch()
-//
-//   let tablesQuery = app.tables
-//
-//    let cell = tablesQuery.children(matching: .cell).element(boundBy: 0)
-//    cell.swipeUp()
-//    sleep(3)
-//
-//    let cellToLike = tablesQuery.children(matching: .cell).element(boundBy: 1)
-//    let likeButton = cellToLike.buttons["like_button_off"]
-//        if likeButton.waitForExistence(timeout: 3) {
-//            likeButton.tap()
-//        } else {
-//
-//            cellToLike.buttons["like_button_on"].tap()
-//        }
-//
-//    sleep(3)
-//
-//    cellToLike.tap()
-//
-//    sleep(3)
-//
-//    let image = app.scrollViews.images.element(boundBy: 0)
-//
-//    image.pinch(withScale: 3, velocity: 1)
-//    image.pinch(withScale: 0.5, velocity: -1)
-//
-//    let navBackButtonWhiteButton = app.buttons["nav_back_button"]
-//    navBackButtonWhiteButton.tap()
-//}
