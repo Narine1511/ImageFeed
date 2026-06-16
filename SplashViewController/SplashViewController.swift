@@ -1,16 +1,13 @@
-
 import UIKit
 
 final class SplashViewController: UIViewController {
-    /* private let showAuthenticationScreenSegueIdentifier = "ShowAuthenticationScreen"*/
     private let storage = OAuth2TokenStorage.shared
-    private let profileService = ProfileService.shared // синглтон
+    private let profileService = ProfileService.shared
     
     private var imageView: UIImageView?
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        /*OAuth2TokenStorage.shared.token = nil*/
         setupImageView()
         
         if let token = storage.token {
@@ -18,11 +15,6 @@ final class SplashViewController: UIViewController {
         } else {
             presentAuthViewController()
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -85,5 +77,12 @@ extension SplashViewController: AuthViewControllerDelegate {
     func didAuthenticate(_ vc: AuthViewController) {
         vc.dismiss(animated: true)
         switchToTabBarController()
+      /*  guard let token = storage.token else {
+            print("[SplashVC]: Нет токена после авторизации")
+            return
+        }
+        
+        // ✅ Загружаем профиль перед переходом
+        fetchProfile(token: token)*/
     }
 }

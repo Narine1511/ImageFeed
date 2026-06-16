@@ -16,7 +16,7 @@ struct Photo {
     let welcomeDescription: String?
     let thumbImageURL: String
     let largeImageURL: String
-    let isLiked: Bool
+    var isLiked: Bool
 }
 
 // MARK: - Network Models
@@ -43,6 +43,21 @@ struct PhotoResult: Codable {
 struct UrlsResult: Codable {
     let thumb: String
     let full: String
+}
+
+// MARK: - Service
+struct LikeResponse: Decodable {
+    let photo: LikePhoto
+}
+
+struct LikePhoto: Decodable {
+    let id: String
+    let likedByUser: Bool
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case likedByUser = "liked_by_user"
+    }
 }
 
 // MARK: - Service
@@ -153,11 +168,11 @@ final class ImagesListService {
             completion(.failure(NetworkError.invalidRequest))
             return
         }
-        let task = urlSession.objectTask(for: request) { [weak self] (result: Result<Data, Error>) in
+        let task = urlSession.objectTask(for: request) { [weak self] (result: Result</*Data*/ LikeResponse, Error>) in
             guard let self = self else {return}
             switch result {
-            case .success:
-                self.updatePhotoLikeStatus(photoId: photoId, isLike: isLike)
+            case .success(let response):
+                self.updatePhotoLikeStatus(photoId: photoId, /*isLike: isLike*/ isLike: response.photo.likedByUser)
                 completion(.success(()))
             case .failure(let error):
                 print("[changeLike]: Ошибка: \(error.localizedDescription)")
@@ -165,7 +180,6 @@ final class ImagesListService {
             }
         }
         task.resume()
-        
     }
     
     private func updatePhotoLikeStatus(photoId: String, isLike: Bool) {
@@ -180,7 +194,7 @@ final class ImagesListService {
                     welcomeDescription: photo.welcomeDescription,
                     thumbImageURL: photo.thumbImageURL,
                     largeImageURL: photo.largeImageURL,
-                    isLiked: !photo.isLiked
+                    isLiked: isLike /*!photo.isLiked*/
                 )
                 self.photos[index] = newPhoto
             }

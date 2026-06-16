@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b8J-Sx-Bx1">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
@@ -33,8 +33,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaX-3O-3Wb">
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="Authenticate" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaX-3O-3Wb">
                                 <rect key="frame" x="16" y="680" width="361" height="48"/>
+                                <accessibility key="accessibilityConfiguration" identifier="Authenticate">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="eTa-3x-6fH"/>
                                 </constraints>
@@ -167,8 +170,9 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKx-PD-o6o">
+                                                <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="like_button" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKx-PD-o6o">
                                                     <rect key="frame" x="317" y="4" width="68" height="44"/>
+                                                    <accessibility key="accessibilityConfiguration" identifier="like_button"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="1oK-YH-79v"/>
                                                     </constraints>
@@ -223,7 +227,7 @@
                     <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="LPT-hG-n1t"/>
                     <navigationItem key="navigationItem" id="Wqa-7z-fPI"/>
                     <connections>
-                        <outlet property="tableView" destination="GYj-RI-Hkq" id="th7-Sb-Jyb"/>
+                        <outlet property="tableView" destination="GYj-RI-Hkq" id="wbg-q8-jAW"/>
                         <segue destination="0lJ-jl-ZN1" kind="presentation" identifier="ShowSingleImage" id="E2Z-l7-uSB"/>
                     </connections>
                 </viewController>
@@ -258,6 +262,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUN-8o-7vz">
                                 <rect key="frame" x="8" y="67" width="48" height="48"/>
+                                <accessibility key="accessibilityConfiguration" identifier="nav_back_button"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="4Mo-21-s15"/>
                                     <constraint firstAttribute="width" constant="48" id="Za1-GP-5XB"/>
